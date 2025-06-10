@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ken Quach - AI Researcher & Data Scientist</title>
+    <title>Ken Quach - Data Scientist & AI Researcher</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -13,282 +14,242 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
             overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        #three-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-        }
-
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
+        header {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
         }
 
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+        .hero-content {
+            max-width: 800px;
             animation: fadeInUp 1s ease-out;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .hero-content .subtitle {
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00f5ff, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
             font-size: 1.5rem;
             margin-bottom: 2rem;
             opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
-        .hero-content .description {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.9s both;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* Sections */
-        section {
-            padding: 5rem 0;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        /* About Section */
-        .about {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-image {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            margin: 0 auto;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Education Section */
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .education-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .education-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .education-card h3 {
-            color: #4ecdc4;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .education-card .period {
-            color: #ff6b6b;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Publications Section */
-        .publications {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .publication-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border-left: 4px solid #4ecdc4;
-        }
-
-        .publication-item:hover {
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .publication-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #4ecdc4;
-        }
-
-        .publication-details {
-            font-size: 0.9rem;
+        .hero-description {
+            font-size: 1.2rem;
             opacity: 0.8;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-list {
-            list-style: none;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
         }
 
         .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            display: flex;
+            justify-content: center;
             gap: 2rem;
-            margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .contact-item {
-            padding: 1.5rem;
-            border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
         .contact-item:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
+            transform: translateY(-2px);
         }
 
-        .contact-icon {
-            font-size: 2rem;
+        .section {
+            min-height: 100vh;
+            padding: 5rem 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            margin: 2rem 0;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .education-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .education-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #00f5ff;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .degree-title {
+            font-size: 1.5rem;
+            color: #00f5ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            font-size: 1.2rem;
             margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .period {
+            color: #4ecdc4;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            opacity: 0.9;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-list li:before {
+            content: "▶";
+            position: absolute;
+            left: 0;
             color: #4ecdc4;
         }
 
-        /* Animations */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #00f5ff, #4ecdc4, #ff6b6b);
+        }
+
+        .experience-item {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            margin-left: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .experience-item:before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: #00f5ff;
+            border-radius: 50%;
+            border: 3px solid #1a1a2e;
+        }
+
+        .job-title {
+            font-size: 1.4rem;
+            color: #00f5ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            font-size: 1.1rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -300,272 +261,324 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(120deg); }
-            66% { transform: translateY(10px) rotate(240deg); }
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-content .subtitle { font-size: 1.2rem; }
-            .about-content { grid-template-columns: 1fr; text-align: center; }
-            nav ul { flex-direction: column; gap: 1rem; }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: #00f5ff;
+            font-size: 2rem;
+            z-index: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#publications">Research</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div id="three-container"></div>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Ken Quach</h1>
-            <div class="subtitle">AI Researcher & Data Scientist</div>
-            <div class="description">
-                PhD candidate exploring the intersection of AI and marketing through dynamic personas 
-                and phygital customer experiences. Passionate about deep learning, big data analysis, 
-                and transforming complex data into actionable insights.
-            </div>
-            <a href="#contact" class="cta-button">Get In Touch</a>
-        </div>
-        
-        <!-- Floating particles -->
-        <div class="particle" style="top: 20%; left: 10%; width: 10px; height: 10px; animation-delay: 0s;"></div>
-        <div class="particle" style="top: 60%; left: 80%; width: 15px; height: 15px; animation-delay: 2s;"></div>
-        <div class="particle" style="top: 30%; left: 70%; width: 8px; height: 8px; animation-delay: 4s;"></div>
-        <div class="particle" style="top: 80%; left: 20%; width: 12px; height: 12px; animation-delay: 1s;"></div>
-    </section>
-
-    <section id="about" class="about">
+    <header>
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-image">🤖</div>
-                <div class="about-text">
-                    <p>I'm a passionate researcher and data scientist currently pursuing my PhD in Computer Science at Griffith University. My work focuses on leveraging big data and AI to understand customer behavior in the digital age, particularly exploring how virtual influencers compare to human ones in marketing effectiveness.</p>
-                    <br>
-                    <p>With a strong foundation in machine learning frameworks like PyTorch and TensorFlow, I've developed hybrid models for traffic prediction and contributed to cutting-edge research in graph neural networks. I believe in the power of AI to transform industries and create meaningful customer experiences.</p>
-                    <br>
-                    <p>When I'm not diving deep into datasets or training neural networks, I enjoy exploring the Gold Coast and staying up-to-date with the latest developments in artificial intelligence and data science.</p>
+            <div class="hero-content">
+                <h1 class="hero-title">Ken Quach</h1>
+                <p class="hero-subtitle">PhD Candidate in Computer Science</p>
+                <p class="hero-description">
+                    Specializing in Big Data Analysis, AI-driven Marketing Strategies, and Deep Learning for Real-world Applications
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">📍 Mermaid Waters, QLD</div>
+                    <div class="contact-item">📞 0414303005</div>
+                    <div class="contact-item">✉️ k.quach@griffith.edu.au</div>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="scroll-indicator">↓</div>
+    </header>
 
-    <section id="education" class="education">
-        <div class="container">
+    <main class="container">
+        <section class="section" id="education">
             <h2 class="section-title">Education</h2>
             <div class="education-grid">
                 <div class="education-card">
                     <div class="period">Mar 2023 – Current</div>
-                    <h3>PhD in Computer Science</h3>
-                    <p><strong>Griffith University, Gold Coast</strong></p>
-                    <p>Thesis: Big Data Analysis and Modeling for Marketing Applications</p>
-                    <p>Exploring dynamic personas in phygital customer journeys, leveraging social media data to compare virtual vs. human influencer impacts.</p>
+                    <h3 class="degree-title">PhD Candidate in Computer Science</h3>
+                    <p class="institution">Griffith University, Gold Coast, Australia</p>
+                    <div class="description">
+                        <strong>Thesis:</strong> Big Data Analysis and Modeling for Marketing Applications<br><br>
+                        Exploring dynamic personas in enhancing customer experiences across the phygital journey. 
+                        Leveraging large-scale social media data to develop analytical models for extracting post-level metadata 
+                        and comparing behavioral impacts of virtual versus human influencers in AI-driven marketing strategies.
+                    </div>
                 </div>
-                
+
                 <div class="education-card">
                     <div class="period">Mar 2022 – Mar 2023</div>
-                    <h3>Bachelor of Computer Science (Honours)</h3>
-                    <p><strong>Griffith University, Gold Coast</strong></p>
-                    <p>Thesis: Traffic Demand Prediction with Deep Learning</p>
-                    <p>Developed LSTM-SVR hybrid model for short-term traffic prediction, benchmarking various deep learning architectures.</p>
+                    <h3 class="degree-title">Bachelor of Computer Science (Honours)</h3>
+                    <p class="institution">Griffith University, Gold Coast, Australia</p>
+                    <div class="description">
+                        <strong>Thesis:</strong> Traffic Demand Prediction with Deep Learning<br><br>
+                        Systematic compilation and benchmarking of state-of-the-art deep learning models in traffic forecasting. 
+                        Developed a hybrid LSTM-SVR model for efficient short-term traffic speed prediction.
+                    </div>
                 </div>
-                
+
                 <div class="education-card">
                     <div class="period">Feb 2019 – Oct 2021</div>
-                    <h3>Bachelor of Computer Science</h3>
-                    <p><strong>Griffith University</strong></p>
-                    <p>Major: Data Science and Artificial Intelligence</p>
-                    <p>CGPA: 6.55/7 | <em>Graduated with Distinction</em></p>
+                    <h3 class="degree-title">Bachelor of Computer Science</h3>
+                    <p class="institution">Griffith University, Australia</p>
+                    <div class="description">
+                        <strong>Specialization:</strong> Data Science and Artificial Intelligence<br>
+                        <strong>CGPA:</strong> 6.55/7 - Graduated with Distinction<br><br>
+                        Strong foundation in machine learning, data analytics, and AI algorithms with exceptional academic performance.
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="publications" class="publications">
-        <div class="container">
-            <h2 class="section-title">Recent Publications</h2>
-            
-            <div class="publication-item">
-                <div class="publication-title">A Benchmarking Evaluation of Graph Neural Networks on Traffic Speed Prediction</div>
-                <div class="publication-details">K. N. D. Quach, V. H. Vu, T. T. Nguyen, Q. V. H. Nguyen, & J. Jo (2022) | ADMA Conference 2022</div>
-            </div>
-            
-            <div class="publication-item">
-                <div class="publication-title">Short-term Traffic Speed Prediction Using Hybrid LSTM-SVR Model</div>
-                <div class="publication-details">K. N. D. Quach, Z. Ren, K. V. Tran, et al. (2022) | RiTA Conference 2022</div>
-            </div>
-            
-            <div class="publication-item">
-                <div class="publication-title">Real-time Wildfire Detection with Semantic Explanations</div>
-                <div class="publication-details">T. C. Phan, N. D. K. Quach, et al. (2022) | Expert Systems with Applications</div>
-            </div>
-            
-            <div class="publication-item">
-                <div class="publication-title">Poisoning GNN-based Recommender Systems with Generative Surrogate-based Attacks</div>
-                <div class="publication-details">T. T. Nguyen, K. N. D. Quach, et al. (2022) | Transactions on Information Systems</div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="https://scholar.google.com/citations?user=5FNOWXQAAAAJ&hl=en" target="_blank" class="cta-button">
-                    📚 View All Publications on Google Scholar
-                </a>
-            </div>
-        </div>
-    </section>
+        <section class="section" id="experience">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="period">Nov 2021 – Current</div>
+                    <h3 class="job-title">Research Assistant</h3>
+                    <p class="company">School of Information and Communication Technology, Griffith University</p>
+                    <div class="description">
+                        Leading research experiments across multiple projects including traffic prediction, machine unlearning, 
+                        and digital twin technologies. Responsibilities include authoring academic publications, presenting at 
+                        international conferences, performing statistical analyses, and maintaining experimental servers for the research team.
+                    </div>
+                </div>
 
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Expertise</h2>
+                <div class="experience-item">
+                    <div class="period">Feb 2021 – Oct 2021</div>
+                    <h3 class="job-title">Software Developer</h3>
+                    <p class="company">DataSakura | Full-cycle Game Development Company</p>
+                    <div class="description">
+                        Full-stack development of applications for autonomous vehicles, contributing to innovative 
+                        solutions in the intersection of gaming technology and automotive intelligence.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <h2 class="section-title">Skills & Competencies</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <div class="skill-icon">🧠</div>
-                    <h3>Machine Learning</h3>
+                    <h3>Machine Learning & AI</h3>
                     <ul class="skill-list">
                         <li>PyTorch & TensorFlow</li>
-                        <li>Deep Learning Models</li>
+                        <li>Deep Learning Model Development</li>
                         <li>Graph Neural Networks</li>
                         <li>Time Series Prediction</li>
-                        <li>Hybrid Model Development</li>
+                        <li>Hybrid Model Architecture (LSTM-SVR)</li>
+                        <li>Model Benchmarking & Evaluation</li>
                     </ul>
                 </div>
-                
+
                 <div class="skill-category">
-                    <div class="skill-icon">📊</div>
-                    <h3>Data Science</h3>
+                    <h3>Data Science & Analytics</h3>
                     <ul class="skill-list">
                         <li>Pandas & NumPy</li>
-                        <li>Data Visualization</li>
+                        <li>Data Visualization (Matplotlib, Seaborn)</li>
+                        <li>Exploratory Data Analysis (EDA)</li>
                         <li>Statistical Analysis</li>
-                        <li>Exploratory Data Analysis</li>
-                        <li>Big Data Processing</li>
+                        <li>Large-scale Data Processing</li>
+                        <li>Social Media Data Analysis</li>
                     </ul>
                 </div>
-                
-                <div class="skill-category">
-                    <div class="skill-icon">🔬</div>
-                    <h3>Research</h3>
-                    <ul class="skill-list">
-                        <li>Academic Writing</li>
-                        <li>Literature Review</li>
-                        <li>Experimental Design</li>
-                        <li>Performance Benchmarking</li>
-                        <li>Conference Presentations</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <div class="skill-icon">⚙️</div>
-                    <h3>Technical</h3>
-                    <ul class="skill-list">
-                        <li>High-Performance Computing</li>
-                        <li>GPU Computing</li>
-                        <li>Server Management</li>
-                        <li>Full-Stack Development</li>
-                        <li>Software Engineering</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
-            <p>Interested in collaboration, research opportunities, or just want to chat about AI and data science?</p>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <p>k.quach@griffith.edu.au</p>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <h3>Phone</h3>
-                    <p>0414 303 005</p>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <h3>Location</h3>
-                    <p>Gold Coast, Queensland<br>Australia</p>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">🎓</div>
-                    <h3>Institution</h3>
-                    <p>Griffith University<br>School of ICT</p>
+                <div class="skill-category">
+                    <h3>Technical Infrastructure</h3>
+                    <ul class="skill-list">
+                        <li>High-performance Computing</li>
+                        <li>GPU-accelerated Model Training</li>
+                        <li>Remote Server Management</li>
+                        <li>Experimental Design & Implementation</li>
+                        <li>Research Methodology</li>
+                        <li>Academic Writing & Publication</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+
+    </main>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Three.js Scene Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('three-container').appendChild(renderer.domElement);
+
+        // Create floating particles
+        const particleCount = 200;
+        const particles = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 100;
+            positions[i + 1] = (Math.random() - 0.5) * 100;
+            positions[i + 2] = (Math.random() - 0.5) * 100;
+
+            // Random colors between cyan, pink, and teal
+            const colorChoice = Math.random();
+            if (colorChoice < 0.33) {
+                colors[i] = 0;     // R
+                colors[i + 1] = 0.96; // G (cyan)
+                colors[i + 2] = 1;  // B
+            } else if (colorChoice < 0.66) {
+                colors[i] = 1;     // R (pink)
+                colors[i + 1] = 0.42; // G
+                colors[i + 2] = 0.42; // B
+            } else {
+                colors[i] = 0.31;  // R (teal)
+                colors[i + 1] = 0.8; // G
+                colors[i + 2] = 0.77; // B
+            }
+        }
+
+        particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({
+            size: 2,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particleSystem = new THREE.Points(particles, particleMaterial);
+        scene.add(particleSystem);
+
+        // Create data flow lines
+        const lineGeometry = new THREE.BufferGeometry();
+        const linePositions = [];
+        const lineColors = [];
+
+        for (let i = 0; i < 50; i++) {
+            const start = new THREE.Vector3(
+                (Math.random() - 0.5) * 80,
+                (Math.random() - 0.5) * 80,
+                (Math.random() - 0.5) * 80
+            );
+            const end = new THREE.Vector3(
+                start.x + (Math.random() - 0.5) * 20,
+                start.y + (Math.random() - 0.5) * 20,
+                start.z + (Math.random() - 0.5) * 20
+            );
+
+            linePositions.push(start.x, start.y, start.z);
+            linePositions.push(end.x, end.y, end.z);
+
+            // Gradient colors for lines
+            lineColors.push(0, 0.96, 1); // Cyan
+            lineColors.push(0.31, 0.8, 0.77); // Teal
+        }
+
+        lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+        lineGeometry.setAttribute('color', new THREE.Float32BufferAttribute(lineColors, 3));
+
+        const lineMaterial = new THREE.LineBasicMaterial({
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
+        });
+
+        const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+        scene.add(lines);
+
+        camera.position.z = 50;
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate particle system
+            particleSystem.rotation.x += 0.001;
+            particleSystem.rotation.y += 0.002;
+
+            // Rotate lines
+            lines.rotation.x += 0.0005;
+            lines.rotation.y += 0.001;
+
+            // Camera movement based on scroll
+            const scrollPercent = window.pageYOffset / (document.body.scrollHeight - window.innerHeight);
+            camera.position.y = scrollPercent * 30;
+            camera.lookAt(0, scrollPercent * 15, 0);
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Smooth scrolling for scroll indicator
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            document.querySelector('#education').scrollIntoView({
+                behavior: 'smooth'
             });
         });
 
-        // Add scroll effect to navigation
+        // Hide scroll indicator after scrolling
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(0, 0, 0, 0.8)';
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (window.pageYOffset > 100) {
+                scrollIndicator.style.opacity = '0';
             } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.1)';
+                scrollIndicator.style.opacity = '1';
             }
         });
-
-        // Add entrance animations on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections for animations
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'all 0.6s ease-out';
-            observer.observe(section);
-        });
-
-        // Make the hero section visible immediately
-        document.querySelector('#home').style.opacity = '1';
-        document.querySelector('#home').style.transform = 'translateY(0)';
     </script>
 </body>
 </html>
