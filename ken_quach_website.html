@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ken Quach - AI Researcher & Data Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.9s both;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .education-card h3 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .education-card .period {
+            color: #ff6b6b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Publications Section */
+        .publications {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .publication-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .publication-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .publication-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #4ecdc4;
+        }
+
+        .publication-details {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content .subtitle { font-size: 1.2rem; }
+            .about-content { grid-template-columns: 1fr; text-align: center; }
+            nav ul { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#publications">Research</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ken Quach</h1>
+            <div class="subtitle">AI Researcher & Data Scientist</div>
+            <div class="description">
+                PhD candidate exploring the intersection of AI and marketing through dynamic personas 
+                and phygital customer experiences. Passionate about deep learning, big data analysis, 
+                and transforming complex data into actionable insights.
+            </div>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+        
+        <!-- Floating particles -->
+        <div class="particle" style="top: 20%; left: 10%; width: 10px; height: 10px; animation-delay: 0s;"></div>
+        <div class="particle" style="top: 60%; left: 80%; width: 15px; height: 15px; animation-delay: 2s;"></div>
+        <div class="particle" style="top: 30%; left: 70%; width: 8px; height: 8px; animation-delay: 4s;"></div>
+        <div class="particle" style="top: 80%; left: 20%; width: 12px; height: 12px; animation-delay: 1s;"></div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">🤖</div>
+                <div class="about-text">
+                    <p>I'm a passionate researcher and data scientist currently pursuing my PhD in Computer Science at Griffith University. My work focuses on leveraging big data and AI to understand customer behavior in the digital age, particularly exploring how virtual influencers compare to human ones in marketing effectiveness.</p>
+                    <br>
+                    <p>With a strong foundation in machine learning frameworks like PyTorch and TensorFlow, I've developed hybrid models for traffic prediction and contributed to cutting-edge research in graph neural networks. I believe in the power of AI to transform industries and create meaningful customer experiences.</p>
+                    <br>
+                    <p>When I'm not diving deep into datasets or training neural networks, I enjoy exploring the Gold Coast and staying up-to-date with the latest developments in artificial intelligence and data science.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="period">Mar 2023 – Current</div>
+                    <h3>PhD in Computer Science</h3>
+                    <p><strong>Griffith University, Gold Coast</strong></p>
+                    <p>Thesis: Big Data Analysis and Modeling for Marketing Applications</p>
+                    <p>Exploring dynamic personas in phygital customer journeys, leveraging social media data to compare virtual vs. human influencer impacts.</p>
+                </div>
+                
+                <div class="education-card">
+                    <div class="period">Mar 2022 – Mar 2023</div>
+                    <h3>Bachelor of Computer Science (Honours)</h3>
+                    <p><strong>Griffith University, Gold Coast</strong></p>
+                    <p>Thesis: Traffic Demand Prediction with Deep Learning</p>
+                    <p>Developed LSTM-SVR hybrid model for short-term traffic prediction, benchmarking various deep learning architectures.</p>
+                </div>
+                
+                <div class="education-card">
+                    <div class="period">Feb 2019 – Oct 2021</div>
+                    <h3>Bachelor of Computer Science</h3>
+                    <p><strong>Griffith University</strong></p>
+                    <p>Major: Data Science and Artificial Intelligence</p>
+                    <p>CGPA: 6.55/7 | <em>Graduated with Distinction</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications" class="publications">
+        <div class="container">
+            <h2 class="section-title">Recent Publications</h2>
+            
+            <div class="publication-item">
+                <div class="publication-title">A Benchmarking Evaluation of Graph Neural Networks on Traffic Speed Prediction</div>
+                <div class="publication-details">K. N. D. Quach, V. H. Vu, T. T. Nguyen, Q. V. H. Nguyen, & J. Jo (2022) | ADMA Conference 2022</div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-title">Short-term Traffic Speed Prediction Using Hybrid LSTM-SVR Model</div>
+                <div class="publication-details">K. N. D. Quach, Z. Ren, K. V. Tran, et al. (2022) | RiTA Conference 2022</div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-title">Real-time Wildfire Detection with Semantic Explanations</div>
+                <div class="publication-details">T. C. Phan, N. D. K. Quach, et al. (2022) | Expert Systems with Applications</div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-title">Poisoning GNN-based Recommender Systems with Generative Surrogate-based Attacks</div>
+                <div class="publication-details">T. T. Nguyen, K. N. D. Quach, et al. (2022) | Transactions on Information Systems</div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://scholar.google.com/citations?user=5FNOWXQAAAAJ&hl=en" target="_blank" class="cta-button">
+                    📚 View All Publications on Google Scholar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">🧠</div>
+                    <h3>Machine Learning</h3>
+                    <ul class="skill-list">
+                        <li>PyTorch & TensorFlow</li>
+                        <li>Deep Learning Models</li>
+                        <li>Graph Neural Networks</li>
+                        <li>Time Series Prediction</li>
+                        <li>Hybrid Model Development</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-icon">📊</div>
+                    <h3>Data Science</h3>
+                    <ul class="skill-list">
+                        <li>Pandas & NumPy</li>
+                        <li>Data Visualization</li>
+                        <li>Statistical Analysis</li>
+                        <li>Exploratory Data Analysis</li>
+                        <li>Big Data Processing</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-icon">🔬</div>
+                    <h3>Research</h3>
+                    <ul class="skill-list">
+                        <li>Academic Writing</li>
+                        <li>Literature Review</li>
+                        <li>Experimental Design</li>
+                        <li>Performance Benchmarking</li>
+                        <li>Conference Presentations</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Technical</h3>
+                    <ul class="skill-list">
+                        <li>High-Performance Computing</li>
+                        <li>GPU Computing</li>
+                        <li>Server Management</li>
+                        <li>Full-Stack Development</li>
+                        <li>Software Engineering</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p>Interested in collaboration, research opportunities, or just want to chat about AI and data science?</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>k.quach@griffith.edu.au</p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <h3>Phone</h3>
+                    <p>0414 303 005</p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h3>Location</h3>
+                    <p>Gold Coast, Queensland<br>Australia</p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">🎓</div>
+                    <h3>Institution</h3>
+                    <p>Griffith University<br>School of ICT</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(0, 0, 0, 0.8)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Add entrance animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animations
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Make the hero section visible immediately
+        document.querySelector('#home').style.opacity = '1';
+        document.querySelector('#home').style.transform = 'translateY(0)';
+    </script>
+</body>
+</html>
