@@ -12,6 +12,23 @@
             box-sizing: border-box;
         }
 
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 2px solid rgba(0, 245, 255, 0.3);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            color: #ffffff;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
@@ -120,15 +137,17 @@
             display: grid;
             gap: 2rem;
             margin-bottom: 3rem;
+            padding: 0 1rem;
         }
 
         .education-card {
             background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
+            padding: 2rem 3rem;
             border-radius: 15px;
             border-left: 4px solid #00f5ff;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            margin: 0 1rem 2rem 0;
         }
 
         .education-card:hover {
@@ -164,14 +183,16 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
+            padding: 0 1rem;
         }
 
         .skill-category {
             background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
+            padding: 2rem 3rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            margin: 0 1rem 2rem 0;
         }
 
         .skill-category h3 {
@@ -216,10 +237,11 @@
         .experience-item {
             position: relative;
             background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
+            padding: 2rem 3rem;
             margin-bottom: 2rem;
             border-radius: 15px;
             margin-left: 2rem;
+            margin-right: 1rem;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -325,8 +347,7 @@
                     Specializing in Big Data Analysis, AI-driven Marketing Strategies, and Deep Learning for Real-world Applications
                 </p>
                 <div class="contact-info">
-                    <div class="contact-item">📍 Mermaid Waters, QLD</div>
-                    <div class="contact-item">📞 0414303005</div>
+                    <div class="contact-item">📍 Brisbane, AU</div>
                     <div class="contact-item">✉️ k.quach@griffith.edu.au</div>
                 </div>
             </div>
