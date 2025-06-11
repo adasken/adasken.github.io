@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            background: radial-gradient(ellipse at center, #1a1a3e 0%, #0d0d1f 50%, #000000 100%);
             color: #ffffff;
             overflow: hidden;
             line-height: 1.6;
@@ -100,8 +100,8 @@
         }
 
         .face:hover {
-            border-color: #00f5ff;
-            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+            border-color: #f4d03f;
+            box-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
         }
 
         /* Custom scrollbar styles for all faces */
@@ -115,19 +115,19 @@
         }
 
         .face::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            background: linear-gradient(45deg, #f4d03f, #f8c471);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .face::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #4ecdc4, #00f5ff);
+            background: linear-gradient(45deg, #f8c471, #f4d03f);
         }
 
         /* Force scrollbar to always be visible */
         .face {
             scrollbar-width: thin;
-            scrollbar-color: #00f5ff rgba(255, 255, 255, 0.1);
+            scrollbar-color: #f4d03f rgba(255, 255, 255, 0.1);
             overflow-y: scroll;
         }
 
@@ -221,7 +221,7 @@
             font-size: 3rem;
             text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            background: linear-gradient(45deg, #f4d03f, #f8c471);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -237,7 +237,7 @@
             font-size: 4rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00f5ff, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #f4d03f, #f8c471, #e8daef);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -265,16 +265,16 @@
         }
 
         .contact-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(244, 208, 63, 0.1);
             padding: 0.5rem 1rem;
             border-radius: 25px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(244, 208, 63, 0.2);
             transition: all 0.3s ease;
         }
 
         .contact-item:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(244, 208, 63, 0.2);
             transform: translateY(-2px);
         }
 
@@ -298,13 +298,13 @@
         }
 
         .education-grid::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            background: linear-gradient(45deg, #f4d03f, #f8c471);
             border-radius: 10px;
         }
 
         .education-grid {
             scrollbar-width: thin;
-            scrollbar-color: #00f5ff rgba(255, 255, 255, 0.1);
+            scrollbar-color: #f4d03f rgba(255, 255, 255, 0.1);
             overflow-y: scroll;
         }
 
@@ -324,7 +324,7 @@
 
         .degree-title {
             font-size: 1.5rem;
-            color: #00f5ff;
+            color: #f4d03f;
             margin-bottom: 0.5rem;
         }
 
@@ -335,7 +335,7 @@
         }
 
         .period {
-            color: #4ecdc4;
+            color: #e8daef;
             font-weight: 600;
             margin-bottom: 1rem;
         }
@@ -364,13 +364,13 @@
         }
 
         .experience-timeline::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            background: linear-gradient(45deg, #f4d03f, #f8c471);
             border-radius: 10px;
         }
 
         .experience-timeline {
             scrollbar-width: thin;
-            scrollbar-color: #00f5ff rgba(255, 255, 255, 0.1);
+            scrollbar-color: #f4d03f rgba(255, 255, 255, 0.1);
             overflow-y: scroll;
         }
 
@@ -381,7 +381,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(to bottom, #00f5ff, #4ecdc4, #ff6b6b);
+            background: linear-gradient(to bottom, #f4d03f, #e8daef, #f8c471);
         }
 
         .experience-item {
@@ -397,13 +397,13 @@
 
         .job-title {
             font-size: 1.4rem;
-            color: #00f5ff;
+            color: #f4d03f;
             margin-bottom: 0.5rem;
         }
 
         .company {
             font-size: 1.1rem;
-            color: #4ecdc4;
+            color: #e8daef;
             margin-bottom: 1rem;
         }
 
@@ -427,13 +427,13 @@
         }
 
         .skills-grid::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            background: linear-gradient(45deg, #f4d03f, #f8c471);
             border-radius: 10px;
         }
 
         .skills-grid {
             scrollbar-width: thin;
-            scrollbar-color: #00f5ff rgba(255, 255, 255, 0.1);
+            scrollbar-color: #f4d03f rgba(255, 255, 255, 0.1);
             overflow-y: scroll;
         }
 
@@ -446,7 +446,7 @@
         }
 
         .skill-category h3 {
-            color: #ff6b6b;
+            color: #f8c471;
             margin-bottom: 1rem;
             font-size: 1.3rem;
         }
@@ -467,7 +467,7 @@
 
         .skill-list li:before {
             content: "• ";
-            color: #4ecdc4;
+            color: #e8daef;
             font-weight: bold;
         }
 
@@ -502,16 +502,16 @@
         }
 
         .nav-section-btn:hover {
-            background: rgba(0, 245, 255, 0.3);
-            border-color: #00f5ff;
-            color: #00f5ff;
+            background: rgba(244, 208, 63, 0.3);
+            border-color: #f4d03f;
+            color: #f4d03f;
             transform: translateY(-2px);
         }
 
         .nav-section-btn.active {
-            background: rgba(0, 245, 255, 0.4);
-            border-color: #00f5ff;
-            color: #00f5ff;
+            background: rgba(244, 208, 63, 0.4);
+            border-color: #f4d03f;
+            color: #f4d03f;
         }
 
         @keyframes gradientShift {
@@ -709,11 +709,11 @@
 
             const colorChoice = Math.random();
             if (colorChoice < 0.33) {
-                colors[i] = 0; colors[i + 1] = 0.96; colors[i + 2] = 1;
+                colors[i] = 0.96; colors[i + 1] = 0.82; colors[i + 2] = 0.25; // Golden
             } else if (colorChoice < 0.66) {
-                colors[i] = 1; colors[i + 1] = 0.42; colors[i + 2] = 0.42;
+                colors[i] = 0.97; colors[i + 1] = 0.78; colors[i + 2] = 0.44; // Light gold
             } else {
-                colors[i] = 0.31; colors[i + 1] = 0.8; colors[i + 2] = 0.77;
+                colors[i] = 0.91; colors[i + 1] = 0.85; colors[i + 2] = 0.94; // Lavender
             }
         }
 
