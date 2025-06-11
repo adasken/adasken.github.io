@@ -63,11 +63,38 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 3rem;
-            overflow-y: auto;
+            overflow-y: scroll;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             backface-visibility: visible;
+        }
+
+        /* Custom scrollbar styles for all faces */
+        .face::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .face::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .face::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .face::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #4ecdc4, #00f5ff);
+        }
+
+        /* Force scrollbar to always be visible */
+        .face {
+            scrollbar-width: thin;
+            scrollbar-color: #00f5ff rgba(255, 255, 255, 0.1);
+            overflow-y: scroll;
         }
 
         .face-front { transform: rotateY(0deg) translateZ(30vw); }
@@ -141,8 +168,29 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            max-height: 60vh;
+            height: 100%;
             overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .education-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .education-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .education-grid::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            border-radius: 10px;
+        }
+
+        .education-grid {
+            scrollbar-width: thin;
+            scrollbar-color: #00f5ff rgba(255, 255, 255, 0.1);
+            overflow-y: scroll;
         }
 
         .education-card {
@@ -186,8 +234,29 @@
         .experience-timeline {
             position: relative;
             padding-left: 2rem;
-            max-height: 60vh;
+            height: 100%;
             overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .experience-timeline::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .experience-timeline::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .experience-timeline::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            border-radius: 10px;
+        }
+
+        .experience-timeline {
+            scrollbar-width: thin;
+            scrollbar-color: #00f5ff rgba(255, 255, 255, 0.1);
+            overflow-y: scroll;
         }
 
         .experience-timeline:before {
@@ -211,18 +280,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .experience-item:before {
-            content: '';
-            position: absolute;
-            left: -3rem;
-            top: 2rem;
-            width: 12px;
-            height: 12px;
-            background: #00f5ff;
-            border-radius: 50%;
-            border: 3px solid #1a1a2e;
-        }
-
         .job-title {
             font-size: 1.4rem;
             color: #00f5ff;
@@ -240,8 +297,29 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
-            max-height: 60vh;
+            height: 100%;
             overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .skills-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .skills-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .skills-grid::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00f5ff, #4ecdc4);
+            border-radius: 10px;
+        }
+
+        .skills-grid {
+            scrollbar-width: thin;
+            scrollbar-color: #00f5ff rgba(255, 255, 255, 0.1);
+            overflow-y: scroll;
         }
 
         .skill-category {
@@ -266,17 +344,16 @@
         }
 
         .skill-list li {
-            padding: 0.5rem 0;
+            padding: 0.3rem 0;
             opacity: 0.9;
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 0;
         }
 
         .skill-list li:before {
-            content: "▶";
-            position: absolute;
-            left: 0;
+            content: "• ";
             color: #4ecdc4;
+            font-weight: bold;
         }
 
         /* Controls */
@@ -296,21 +373,30 @@
             text-align: center;
         }
 
-        .reset-btn {
-            margin-top: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(0, 245, 255, 0.2);
-            border: 1px solid #00f5ff;
-            color: #00f5ff;
-            border-radius: 15px;
+        .nav-section-btn {
+            padding: 0.4rem 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            font-size: 0.85rem;
+            min-width: 80px;
         }
 
-        .reset-btn:hover {
+        .nav-section-btn:hover {
+            background: rgba(0, 245, 255, 0.3);
+            border-color: #00f5ff;
+            color: #00f5ff;
+            transform: translateY(-2px);
+        }
+
+        .nav-section-btn.active {
             background: rgba(0, 245, 255, 0.4);
-            transform: scale(1.05);
+            border-color: #00f5ff;
+            color: #00f5ff;
         }
 
         @keyframes gradientShift {
@@ -347,6 +433,10 @@
             .skill-list {
                 grid-template-columns: 1fr;
             }
+            
+            .controls {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -354,8 +444,13 @@
     <div id="three-container"></div>
 
     <div class="controls">
-        <div>🎮 Drag to rotate the cube</div>
-        <button class="reset-btn" onclick="resetCube()">Reset Position</button>
+        <div style="margin-bottom: 1rem;">🎮 Drag to rotate the cube</div>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <button class="nav-section-btn" onclick="rotateTo('front')" title="Home">🏠 Home</button>
+            <button class="nav-section-btn" onclick="rotateTo('right')" title="Education">🎓 Education</button>
+            <button class="nav-section-btn" onclick="rotateTo('back')" title="Experience">💼 Experience</button>
+            <button class="nav-section-btn" onclick="rotateTo('left')" title="Skills">⚡ Skills</button>
+        </div>
     </div>
 
     <div class="cube-container">
@@ -377,39 +472,32 @@
 
             <!-- Right Face: Education -->
             <div class="face face-right">
-                <h2 class="section-title">Education</h2>
-                <div class="education-grid">
-                    <div class="education-card">
+                <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 2rem;">Education</h2>
+                <div class="education-grid" style="gap: 1.5rem; height: auto; overflow: visible;">
+                    <div class="education-card" style="padding: 1.5rem 2rem;">
                         <div class="period">Mar 2023 – Current</div>
-                        <h3 class="degree-title">PhD Candidate in Computer Science</h3>
-                        <p class="institution">Griffith University, Gold Coast, Australia</p>
-                        <div class="description">
-                            <strong>Thesis:</strong> Big Data Analysis and Modeling for Marketing Applications<br><br>
-                            Exploring dynamic personas in enhancing customer experiences across the phygital journey. 
-                            Leveraging large-scale social media data to develop analytical models for extracting post-level metadata 
-                            and comparing behavioral impacts of virtual versus human influencers in AI-driven marketing strategies.
+                        <h3 class="degree-title" style="font-size: 1.3rem;">PhD in Computer Science</h3>
+                        <p class="institution" style="font-size: 1rem; margin-bottom: 0.5rem;">Griffith University, Gold Coast</p>
+                        <div class="description" style="font-size: 0.9rem; line-height: 1.5;">
+                            <strong>Thesis:</strong> Big Data Analysis and Modeling for Marketing Applications
                         </div>
                     </div>
 
-                    <div class="education-card">
+                    <div class="education-card" style="padding: 1.5rem 2rem;">
                         <div class="period">Mar 2022 – Mar 2023</div>
-                        <h3 class="degree-title">Bachelor of Computer Science (Honours)</h3>
-                        <p class="institution">Griffith University, Gold Coast, Australia</p>
-                        <div class="description">
-                            <strong>Thesis:</strong> Traffic Demand Prediction with Deep Learning<br><br>
-                            Systematic compilation and benchmarking of state-of-the-art deep learning models in traffic forecasting. 
-                            Developed a hybrid LSTM-SVR model for efficient short-term traffic speed prediction.
+                        <h3 class="degree-title" style="font-size: 1.3rem;">Bachelor (Honours)</h3>
+                        <p class="institution" style="font-size: 1rem; margin-bottom: 0.5rem;">Griffith University, Gold Coast</p>
+                        <div class="description" style="font-size: 0.9rem; line-height: 1.5;">
+                            <strong>Thesis:</strong> Traffic Demand Prediction with Deep Learning
                         </div>
                     </div>
 
-                    <div class="education-card">
+                    <div class="education-card" style="padding: 1.5rem 2rem;">
                         <div class="period">Feb 2019 – Oct 2021</div>
-                        <h3 class="degree-title">Bachelor of Computer Science</h3>
-                        <p class="institution">Griffith University, Australia</p>
-                        <div class="description">
-                            <strong>Specialization:</strong> Data Science and Artificial Intelligence<br>
-                            <strong>CGPA:</strong> 6.55/7 - Graduated with Distinction<br><br>
-                            Strong foundation in machine learning, data analytics, and AI algorithms with exceptional academic performance.
+                        <h3 class="degree-title" style="font-size: 1.3rem;">Bachelor of Computer Science</h3>
+                        <p class="institution" style="font-size: 1rem; margin-bottom: 0.5rem;">Griffith University, Australia</p>
+                        <div class="description" style="font-size: 0.9rem; line-height: 1.5;">
+                            <strong>Data Science & AI</strong> - CGPA: 6.55/7 (Distinction)
                         </div>
                     </div>
                 </div>
@@ -417,26 +505,25 @@
 
             <!-- Back Face: Professional Experience -->
             <div class="face face-back">
-                <h2 class="section-title">Professional Experience</h2>
-                <div class="experience-timeline">
-                    <div class="experience-item">
+                <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 2rem;">Professional Experience</h2>
+                <div class="experience-timeline" style="height: auto; overflow: visible; padding-left: 1.5rem;">
+                    <div class="experience-item" style="padding: 1.5rem 2rem; margin-left: 1.5rem; margin-bottom: 1.5rem;">
                         <div class="period">Nov 2021 – Current</div>
-                        <h3 class="job-title">Research Assistant</h3>
-                        <p class="company">School of Information and Communication Technology, Griffith University</p>
-                        <div class="description">
-                            Leading research experiments across multiple projects including traffic prediction, machine unlearning, 
-                            and digital twin technologies. Responsibilities include authoring academic publications, presenting at 
-                            international conferences, performing statistical analyses, and maintaining experimental servers for the research team.
+                        <h3 class="job-title" style="font-size: 1.3rem;">Research Assistant</h3>
+                        <p class="company" style="font-size: 1rem; margin-bottom: 0.8rem;">School of ICT, Griffith University</p>
+                        <div class="description" style="font-size: 0.9rem; line-height: 1.5;">
+                            Leading research in traffic prediction, machine unlearning, and digital twin technologies. 
+                            Authoring publications, presenting at conferences, and maintaining experimental servers.
                         </div>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" style="padding: 1.5rem 2rem; margin-left: 1.5rem;">
                         <div class="period">Feb 2021 – Oct 2021</div>
-                        <h3 class="job-title">Software Developer</h3>
-                        <p class="company">DataSakura | Full-cycle Game Development Company</p>
-                        <div class="description">
-                            Full-stack development of applications for autonomous vehicles, contributing to innovative 
-                            solutions in the intersection of gaming technology and automotive intelligence.
+                        <h3 class="job-title" style="font-size: 1.3rem;">Software Developer</h3>
+                        <p class="company" style="font-size: 1rem; margin-bottom: 0.8rem;">DataSakura | Game Development</p>
+                        <div class="description" style="font-size: 0.9rem; line-height: 1.5;">
+                            Full-stack development for autonomous vehicle applications, integrating 
+                            gaming technology with automotive intelligence solutions.
                         </div>
                     </div>
                 </div>
@@ -444,41 +531,41 @@
 
             <!-- Left Face: Skills -->
             <div class="face face-left">
-                <h2 class="section-title">Skills & Competencies</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Machine Learning & AI</h3>
-                        <ul class="skill-list">
-                            <li>PyTorch & TensorFlow</li>
-                            <li>Deep Learning Model Development</li>
-                            <li>Graph Neural Networks</li>
-                            <li>Time Series Prediction</li>
-                            <li>Hybrid Model Architecture (LSTM-SVR)</li>
-                            <li>Model Benchmarking & Evaluation</li>
+                <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 2rem;">Skills & Competencies</h2>
+                <div class="skills-grid" style="grid-template-columns: 1fr; gap: 1.5rem; height: auto; overflow: visible;">
+                    <div class="skill-category" style="padding: 1.5rem 2rem;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem;">Machine Learning & AI</h3>
+                        <ul class="skill-list" style="grid-template-columns: repeat(2, 1fr); gap: 0.3rem;">
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">PyTorch & TensorFlow</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Deep Learning Models</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Graph Neural Networks</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Time Series Prediction</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">LSTM-SVR Architecture</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Model Benchmarking</li>
                         </ul>
                     </div>
 
-                    <div class="skill-category">
-                        <h3>Data Science & Analytics</h3>
-                        <ul class="skill-list">
-                            <li>Pandas & NumPy</li>
-                            <li>Data Visualization (Matplotlib, Seaborn)</li>
-                            <li>Exploratory Data Analysis (EDA)</li>
-                            <li>Statistical Analysis</li>
-                            <li>Large-scale Data Processing</li>
-                            <li>Social Media Data Analysis</li>
+                    <div class="skill-category" style="padding: 1.5rem 2rem;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem;">Data Science & Analytics</h3>
+                        <ul class="skill-list" style="grid-template-columns: repeat(2, 1fr); gap: 0.3rem;">
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Pandas & NumPy</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Data Visualization</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Statistical Analysis</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Large-scale Processing</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Social Media Analysis</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Exploratory Analysis</li>
                         </ul>
                     </div>
 
-                    <div class="skill-category">
-                        <h3>Technical Infrastructure</h3>
-                        <ul class="skill-list">
-                            <li>High-performance Computing</li>
-                            <li>GPU-accelerated Model Training</li>
-                            <li>Remote Server Management</li>
-                            <li>Experimental Design & Implementation</li>
-                            <li>Research Methodology</li>
-                            <li>Academic Writing & Publication</li>
+                    <div class="skill-category" style="padding: 1.5rem 2rem;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem;">Technical Infrastructure</h3>
+                        <ul class="skill-list" style="grid-template-columns: repeat(2, 1fr); gap: 0.3rem;">
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">High-performance Computing</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">GPU Training</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Server Management</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Research Methodology</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Academic Writing</li>
+                            <li style="font-size: 0.85rem; padding: 0.3rem 0;">Experimental Design</li>
                         </ul>
                     </div>
                 </div>
@@ -550,6 +637,35 @@
         let isDragging = false;
         let previousMousePosition = { x: 0, y: 0 };
         let currentRotation = { x: 0, y: 0 };
+        let currentSection = 'front';
+
+        // Section rotation angles
+        const sectionAngles = {
+            front: { x: 0, y: 0 },
+            right: { x: 0, y: -90 },
+            back: { x: 0, y: -180 },
+            left: { x: 0, y: -270 }
+        };
+
+        // Rotate to specific section
+        function rotateTo(section) {
+            currentSection = section;
+            currentRotation = { ...sectionAngles[section] };
+            
+            cube.style.transition = 'transform 0.8s ease';
+            cube.style.transform = `translate(-50%, -50%) rotateX(${currentRotation.x}deg) rotateY(${currentRotation.y}deg)`;
+            
+            // Update active button
+            document.querySelectorAll('.nav-section-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[onclick="rotateTo('${section}')"]`).classList.add('active');
+            
+            setTimeout(() => {
+                cube.style.transition = 'none';
+            }, 800);
+        }
+
+        // Initialize with front face active
+        document.querySelector(`[onclick="rotateTo('front')"]`).classList.add('active');
 
         // Mouse events
         document.addEventListener('mousedown', (e) => {
@@ -624,9 +740,14 @@
 
         // Reset function
         function resetCube() {
+            currentSection = 'front';
             currentRotation = { x: 0, y: 0 };
             cube.style.transition = 'transform 0.8s ease';
             cube.style.transform = `translate(-50%, -50%) rotateX(0deg) rotateY(0deg)`;
+            
+            // Update active button
+            document.querySelectorAll('.nav-section-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[onclick="rotateTo('front')"]`).classList.add('active');
             
             setTimeout(() => {
                 cube.style.transition = 'none';
