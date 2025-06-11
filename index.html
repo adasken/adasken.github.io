@@ -132,79 +132,88 @@
         }
 
         .face-front { 
-            transform: rotateY(0deg) translateZ(40vw); 
+            transform: rotateY(0deg) translateZ(35vw); 
             animation: floatFront 12s ease-in-out infinite;
         }
         .face-right { 
-            transform: rotateY(90deg) translateZ(40vw); 
+            transform: rotateY(90deg) translateZ(35vw); 
             animation: floatRight 14s ease-in-out infinite;
         }
         .face-back { 
-            transform: rotateY(180deg) translateZ(40vw); 
+            transform: rotateY(180deg) translateZ(35vw); 
             animation: floatBack 16s ease-in-out infinite;
         }
         .face-left { 
-            transform: rotateY(-90deg) translateZ(40vw); 
+            transform: rotateY(-90deg) translateZ(35vw); 
             animation: floatLeft 13s ease-in-out infinite;
         }
 
         @keyframes floatFront {
             0%, 100% {
-                transform: rotateY(0deg) translateZ(40vw) translateX(0px) translateY(0px);
+                transform: rotateY(0deg) translateZ(35vw) translateX(0px) translateY(0px);
             }
             25% {
-                transform: rotateY(0deg) translateZ(40vw) translateX(15px) translateY(-10px);
+                transform: rotateY(0deg) translateZ(35vw) translateX(15px) translateY(-10px);
             }
             50% {
-                transform: rotateY(0deg) translateZ(40vw) translateX(-8px) translateY(12px);
+                transform: rotateY(0deg) translateZ(35vw) translateX(-8px) translateY(12px);
             }
             75% {
-                transform: rotateY(0deg) translateZ(40vw) translateX(10px) translateY(8px);
+                transform: rotateY(0deg) translateZ(35vw) translateX(10px) translateY(8px);
             }
         }
 
         @keyframes floatRight {
             0%, 100% {
-                transform: rotateY(90deg) translateZ(40vw) translateX(0px) translateY(0px);
+                transform: rotateY(90deg) translateZ(35vw) translateX(0px) translateY(0px);
             }
-            20% {
-                transform: rotateY(90deg) translateZ(40vw) translateX(-12px) translateY(15px);
+            15% {
+                transform: rotateY(90deg) translateZ(35vw) translateX(-5px) translateY(18px);
             }
-            40% {
-                transform: rotateY(90deg) translateZ(40vw) translateX(18px) translateY(-5px);
+            35% {
+                transform: rotateY(90deg) translateZ(35vw) translateX(12px) translateY(-8px);
             }
-            60% {
-                transform: rotateY(90deg) translateZ(40vw) translateX(-6px) translateY(-12px);
+            55% {
+                transform: rotateY(90deg) translateZ(35vw) translateX(-15px) translateY(-20px);
             }
-            80% {
-                transform: rotateY(90deg) translateZ(40vw) translateX(8px) translateY(10px);
+            75% {
+                transform: rotateY(90deg) translateZ(35vw) translateX(8px) translateY(15px);
+            }
+            90% {
+                transform: rotateY(90deg) translateZ(35vw) translateX(-3px) translateY(-5px);
             }
         }
 
         @keyframes floatBack {
             0%, 100% {
-                transform: rotateY(180deg) translateZ(40vw) translateX(0px) translateY(0px);
+                transform: rotateY(180deg) translateZ(35vw) translateX(0px) translateY(0px);
             }
-            30% {
-                transform: rotateY(180deg) translateZ(40vw) translateX(20px) translateY(8px);
+            20% {
+                transform: rotateY(180deg) translateZ(35vw) translateX(22px) translateY(5px);
             }
-            60% {
-                transform: rotateY(180deg) translateZ(40vw) translateX(-15px) translateY(-15px);
+            40% {
+                transform: rotateY(180deg) translateZ(35vw) translateX(-10px) translateY(-25px);
             }
-            90% {
-                transform: rotateY(180deg) translateZ(40vw) translateX(5px) translateY(20px);
+            65% {
+                transform: rotateY(180deg) translateZ(35vw) translateX(18px) translateY(20px);
+            }
+            85% {
+                transform: rotateY(180deg) translateZ(35vw) translateX(-20px) translateY(-10px);
             }
         }
 
         @keyframes floatLeft {
             0%, 100% {
-                transform: rotateY(-90deg) translateZ(40vw) translateX(0px) translateY(0px);
+                transform: rotateY(-90deg) translateZ(35vw) translateX(0px) translateY(0px);
             }
-            35% {
-                transform: rotateY(-90deg) translateZ(40vw) translateX(-10px) translateY(-18px);
+            30% {
+                transform: rotateY(-90deg) translateZ(35vw) translateX(-18px) translateY(-12px);
             }
-            70% {
-                transform: rotateY(-90deg) translateZ(40vw) translateX(12px) translateY(6px);
+            60% {
+                transform: rotateY(-90deg) translateZ(35vw) translateX(25px) translateY(8px);
+            }
+            80% {
+                transform: rotateY(-90deg) translateZ(35vw) translateX(-8px) translateY(22px);
             }
         }
 
@@ -679,12 +688,6 @@
         </div>
     </div>
 
-    <footer style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px); padding: 1rem; text-align: center; border-top: 2px solid rgba(0, 245, 255, 0.3); z-index: 1;">
-        <div style="color: #ffffff; font-size: 0.9rem; opacity: 0.9;">
-            <p>&copy; 2025 Ken Quach. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
         // Three.js Scene Setup
         const scene = new THREE.Scene();
@@ -737,6 +740,43 @@
             renderer.render(scene, camera);
         }
         animate();
+
+        // Create random shooting stars
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            
+            // Random starting position (off-screen top-left area)
+            const startX = Math.random() * window.innerWidth * 0.3;
+            const startY = Math.random() * window.innerHeight * 0.3;
+            
+            star.style.left = startX + 'px';
+            star.style.top = startY + 'px';
+            
+            // Random duration between 2-4 seconds
+            const duration = 2 + Math.random() * 2;
+            star.style.animation = `shootingStar ${duration}s linear forwards`;
+            
+            document.body.appendChild(star);
+            
+            // Remove star after animation completes
+            setTimeout(() => {
+                if (star.parentNode) {
+                    star.parentNode.removeChild(star);
+                }
+            }, duration * 1000);
+        }
+
+        // Create shooting stars at random intervals
+        function scheduleShooting() {
+            createShootingStar();
+            // Random interval between 3-8 seconds
+            const nextInterval = 3000 + Math.random() * 5000;
+            setTimeout(scheduleShooting, nextInterval);
+        }
+
+        // Start shooting stars
+        setTimeout(scheduleShooting, 2000); // First star after 2 seconds
 
         // Cube rotation logic
         const cube = document.getElementById('cube');
@@ -800,8 +840,8 @@
             currentRotation.x -= rotateX;
             currentRotation.y += rotateY;
 
-            // Limit X rotation to prevent flipping
-            currentRotation.x = Math.max(-90, Math.min(90, currentRotation.x));
+            // Limit X rotation to prevent seeing top/bottom - extremely restrictive range
+            currentRotation.x = Math.max(-15, Math.min(15, currentRotation.x));
 
             cube.style.transform = `translate(-50%, -50%) rotateX(${currentRotation.x}deg) rotateY(${currentRotation.y}deg)`;
 
@@ -842,8 +882,8 @@
             currentRotation.x -= rotateX;
             currentRotation.y += rotateY;
 
-            // Limit X rotation to prevent flipping
-            currentRotation.x = Math.max(-90, Math.min(90, currentRotation.x));
+            // Limit X rotation to prevent seeing top/bottom - extremely restrictive range
+            currentRotation.x = Math.max(-15, Math.min(15, currentRotation.x));
 
             cube.style.transform = `translate(-50%, -50%) rotateX(${currentRotation.x}deg) rotateY(${currentRotation.y}deg)`;
 
