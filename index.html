@@ -790,6 +790,84 @@
                 line-height: 1.4;
             }
         }
+
+        @media (max-width: 414px) {
+            /* Disable heavy animations and effects */
+            .face-front, .face-right, .face-back, .face-left {
+                animation: none !important;
+            }
+            
+            .cube {
+                animation: none !important;
+                width: 85vw;
+                height: 65vh;
+            }
+            
+            .face-front { transform: rotateY(0deg) translateZ(45vw); }
+            .face-right { transform: rotateY(90deg) translateZ(45vw); }
+            .face-back { transform: rotateY(180deg) translateZ(45vw); }
+            .face-left { transform: rotateY(-90deg) translateZ(45vw); }
+            
+            /* Disable shooting stars */
+            .shooting-star {
+                display: none;
+            }
+            
+            /* Disable flying social buttons */
+            .flying-social {
+                display: none;
+            }
+            
+            /* Reduce background particles */
+            #three-container {
+                display: none;
+            }
+            
+            /* Simplified background */
+            body {
+                background: linear-gradient(180deg, #1a1a3e 0%, #0d0d1f 100%);
+            }
+            
+            /* Simplified face styling */
+            .face {
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                padding: 1.5rem 1rem;
+            }
+            
+            /* Smaller text for very small screens */
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .degree-title {
+                font-size: 1rem !important;
+            }
+            
+            .job-title {
+                font-size: 1rem !important;
+            }
+            
+            .skill-category h3 {
+                font-size: 1rem !important;
+            }
+            
+            .skill-list li {
+                font-size: 0.75rem !important;
+            }
+            
+            /* Disable blur effects */
+            .contact-item, .education-card, .experience-item, .skill-category {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1113,6 +1191,12 @@
 
         // Touch events for mobile
         document.addEventListener('touchstart', (e) => {
+            // Check if touch started on a face (content area)
+            if (e.target.closest('.face')) {
+                // Allow scrolling on faces, don't start cube rotation
+                return;
+            }
+            
             isDragging = true;
             document.body.classList.add('dragging');
             const touch = e.touches[0];
@@ -1122,6 +1206,12 @@
 
         document.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
+            
+            // Check if we're scrolling inside a face
+            if (e.target.closest('.face')) {
+                return;
+            }
+            
             e.preventDefault();
 
             const touch = e.touches[0];
