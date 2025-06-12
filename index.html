@@ -792,21 +792,117 @@
         }
 
         @media (max-width: 414px) {
-            /* Disable heavy animations and effects */
-            .face-front, .face-right, .face-back, .face-left {
-                animation: none !important;
+            /* Disable cube for mobile - make it a normal landing page */
+            .cube-container {
+                position: static;
+                width: 100%;
+                height: auto;
+                perspective: none;
+                overflow: visible;
             }
             
             .cube {
+                position: static;
+                width: 100%;
+                height: auto;
+                transform: none !important;
                 animation: none !important;
-                width: 85vw;
-                height: 65vh;
+                display: block;
             }
             
-            .face-front { transform: rotateY(0deg) translateZ(45vw); }
-            .face-right { transform: rotateY(90deg) translateZ(45vw); }
-            .face-back { transform: rotateY(180deg) translateZ(45vw); }
-            .face-left { transform: rotateY(-90deg) translateZ(45vw); }
+            .face {
+                position: static !important;
+                width: 100% !important;
+                height: auto !important;
+                transform: none !important;
+                background: rgba(0, 0, 0, 0.6);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                padding: 2rem 1.5rem;
+                margin-bottom: 2rem;
+                border-radius: 15px;
+                border: 1px solid rgba(244, 208, 63, 0.2);
+                display: flex !important;
+                flex-direction: column;
+                justify-content: flex-start;
+                overflow-y: visible;
+            }
+            
+            .face-front {
+                animation: mobileFloat1 8s ease-in-out infinite !important;
+            }
+            
+            .face-right {
+                animation: mobileFloat2 10s ease-in-out infinite !important;
+            }
+            
+            .face-back {
+                animation: mobileFloat3 9s ease-in-out infinite !important;
+            }
+            
+            .face-left {
+                animation: mobileFloat4 7s ease-in-out infinite !important;
+            }
+            
+            @keyframes mobileFloat1 {
+                0%, 100% {
+                    transform: translateX(0px) translateY(0px);
+                }
+                25% {
+                    transform: translateX(8px) translateY(-5px);
+                }
+                50% {
+                    transform: translateX(-5px) translateY(8px);
+                }
+                75% {
+                    transform: translateX(6px) translateY(4px);
+                }
+            }
+            
+            @keyframes mobileFloat2 {
+                0%, 100% {
+                    transform: translateX(0px) translateY(0px);
+                }
+                20% {
+                    transform: translateX(-6px) translateY(10px);
+                }
+                40% {
+                    transform: translateX(10px) translateY(-3px);
+                }
+                60% {
+                    transform: translateX(-4px) translateY(-8px);
+                }
+                80% {
+                    transform: translateX(5px) translateY(6px);
+                }
+            }
+            
+            @keyframes mobileFloat3 {
+                0%, 100% {
+                    transform: translateX(0px) translateY(0px);
+                }
+                30% {
+                    transform: translateX(12px) translateY(4px);
+                }
+                60% {
+                    transform: translateX(-8px) translateY(-10px);
+                }
+                90% {
+                    transform: translateX(3px) translateY(12px);
+                }
+            }
+            
+            @keyframes mobileFloat4 {
+                0%, 100% {
+                    transform: translateX(0px) translateY(0px);
+                }
+                35% {
+                    transform: translateX(-7px) translateY(-12px);
+                }
+                70% {
+                    transform: translateX(9px) translateY(3px);
+                }
+            }
             
             /* Disable shooting stars */
             .shooting-star {
@@ -823,49 +919,88 @@
                 display: none;
             }
             
-            /* Simplified background */
+            /* Black background with stars and moon for mobile */
             body {
-                background: linear-gradient(180deg, #1a1a3e 0%, #0d0d1f 100%);
+                background: #000000;
+                overflow-y: auto;
+                position: relative;
             }
             
-            /* Simplified face styling */
-            .face {
-                background: rgba(0, 0, 0, 0.8);
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-                padding: 1.5rem 1rem;
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: 
+                    radial-gradient(circle at 80% 20%, rgba(244, 208, 63, 0.3) 0%, transparent 20%),
+                    radial-gradient(2px 2px at 20px 30px, rgba(244, 208, 63, 0.8), transparent),
+                    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
+                    radial-gradient(1px 1px at 90px 40px, rgba(244, 208, 63, 0.7), transparent),
+                    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.5), transparent),
+                    radial-gradient(2px 2px at 160px 30px, rgba(244, 208, 63, 0.6), transparent),
+                    radial-gradient(1px 1px at 200px 60px, rgba(255, 255, 255, 0.7), transparent),
+                    radial-gradient(1px 1px at 230px 20px, rgba(244, 208, 63, 0.5), transparent),
+                    radial-gradient(2px 2px at 270px 90px, rgba(255, 255, 255, 0.6), transparent),
+                    radial-gradient(1px 1px at 300px 50px, rgba(244, 208, 63, 0.8), transparent),
+                    radial-gradient(1px 1px at 50px 120px, rgba(255, 255, 255, 0.5), transparent),
+                    radial-gradient(2px 2px at 100px 150px, rgba(244, 208, 63, 0.7), transparent),
+                    radial-gradient(1px 1px at 180px 140px, rgba(255, 255, 255, 0.6), transparent),
+                    radial-gradient(1px 1px at 220px 170px, rgba(244, 208, 63, 0.5), transparent),
+                    radial-gradient(2px 2px at 280px 160px, rgba(255, 255, 255, 0.7), transparent);
+                background-repeat: repeat;
+                background-size: 350px 200px;
+                pointer-events: none;
+                z-index: -1;
+                animation: twinkle 4s ease-in-out infinite alternate;
+            }
+            
+            @keyframes twinkle {
+                0% { opacity: 0.7; }
+                100% { opacity: 1; }
+            }
+            
+            /* Make container scrollable */
+            .cube-container {
+                padding: 1rem;
             }
             
             /* Smaller text for very small screens */
             .hero-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .section-title {
-                font-size: 1.6rem !important;
+                font-size: 1.8rem !important;
                 margin-bottom: 1.5rem !important;
             }
             
             .degree-title {
-                font-size: 1rem !important;
+                font-size: 1.1rem !important;
             }
             
             .job-title {
-                font-size: 1rem !important;
+                font-size: 1.1rem !important;
             }
             
             .skill-category h3 {
-                font-size: 1rem !important;
+                font-size: 1.1rem !important;
             }
             
             .skill-list li {
-                font-size: 0.75rem !important;
+                font-size: 0.8rem !important;
             }
             
             /* Disable blur effects */
             .contact-item, .education-card, .experience-item, .skill-category {
                 backdrop-filter: none;
                 -webkit-backdrop-filter: none;
+            }
+            
+            /* Add spacing between sections */
+            .face:last-child {
+                margin-bottom: 3rem;
             }
         }
     </style>
@@ -1191,12 +1326,6 @@
 
         // Touch events for mobile
         document.addEventListener('touchstart', (e) => {
-            // Check if touch started on a face (content area)
-            if (e.target.closest('.face')) {
-                // Allow scrolling on faces, don't start cube rotation
-                return;
-            }
-            
             isDragging = true;
             document.body.classList.add('dragging');
             const touch = e.touches[0];
@@ -1206,12 +1335,6 @@
 
         document.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
-            
-            // Check if we're scrolling inside a face
-            if (e.target.closest('.face')) {
-                return;
-            }
-            
             e.preventDefault();
 
             const touch = e.touches[0];
