@@ -1584,6 +1584,26 @@
         
         // Add click event listeners to mobile faces
         if (window.innerWidth <= 414) {
+            let scrollTimeout;
+            
+            // Handle scroll events for social buttons
+            window.addEventListener('scroll', function() {
+                // Pause animations when scrolling
+                document.querySelectorAll('.flying-social').forEach(button => {
+                    button.style.animationPlayState = 'paused';
+                });
+                
+                // Clear existing timeout
+                clearTimeout(scrollTimeout);
+                
+                // Resume animations after scrolling stops (300ms delay)
+                scrollTimeout = setTimeout(() => {
+                    document.querySelectorAll('.flying-social').forEach(button => {
+                        button.style.animationPlayState = 'running';
+                    });
+                }, 300);
+            });
+            
             document.querySelectorAll('.face').forEach(face => {
                 face.addEventListener('click', function(e) {
                     // Get click position relative to viewport
