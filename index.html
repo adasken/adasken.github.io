@@ -735,7 +735,19 @@
             }
             
             .controls {
-                display: none;
+                top: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+            
+            .controls div:first-child {
+                font-size: 0.9rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .nav-section-btn {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.75rem;
+                min-width: 60px;
             }
             
             /* Education Mobile Styles */
@@ -820,6 +832,11 @@
         }
 
         @media (max-width: 414px) {
+            /* Hide navigation panel on mobile */
+            .controls {
+                display: none;
+            }
+            
             /* Disable cube for mobile - make it a normal landing page */
             .cube-container {
                 position: static;
