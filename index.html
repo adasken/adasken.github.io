@@ -49,6 +49,8 @@
             left: 50%;
             width: 60vw;
             height: 60vh;
+            max-width: 900px;
+            max-height: 580px;
             transform-style: preserve-3d;
             transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
             transition: none;
@@ -147,6 +149,25 @@
         .face-left { 
             transform: rotateY(-90deg) translateZ(35vw); 
             animation: floatLeft 13s ease-in-out infinite;
+        }
+
+        @media (min-width: 1512px) {
+            .face-front { 
+                transform: rotateY(0deg) translateZ(450px); 
+                animation: floatFront 12s ease-in-out infinite;
+            }
+            .face-right { 
+                transform: rotateY(90deg) translateZ(450px); 
+                animation: floatRight 14s ease-in-out infinite;
+            }
+            .face-back { 
+                transform: rotateY(180deg) translateZ(450px); 
+                animation: floatBack 16s ease-in-out infinite;
+            }
+            .face-left { 
+                transform: rotateY(-90deg) translateZ(450px); 
+                animation: floatLeft 13s ease-in-out infinite;
+            }
         }
 
         @keyframes floatFront {
