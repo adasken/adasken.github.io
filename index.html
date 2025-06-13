@@ -92,7 +92,11 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-radius: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(244, 208, 63, 0.4);
+            box-shadow: 
+                0 0 20px rgba(244, 208, 63, 0.3),
+                inset 0 0 30px rgba(244, 208, 63, 0.1),
+                0 10px 30px rgba(0, 0, 0, 0.3);
             padding: 3rem;
             overflow-y: scroll;
             display: flex;
@@ -104,7 +108,10 @@
 
         .face:hover {
             border-color: #f4d03f;
-            box-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
+            box-shadow: 
+                0 0 30px rgba(244, 208, 63, 0.6),
+                inset 0 0 40px rgba(244, 208, 63, 0.2),
+                0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
         /* Custom scrollbar styles for all faces */
@@ -1438,12 +1445,56 @@
         const particleSystem = new THREE.Points(particles, particleMaterial);
         scene.add(particleSystem);
 
+        // Create 3D box geometry for desktop windows (only if not mobile)
+        let boxGroup;
+        if (window.innerWidth > 414) {
+            boxGroup = new THREE.Group();
+            
+            // Box geometry for each face
+            const boxGeometry = new THREE.BoxGeometry(25, 20, 2);
+            const boxMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0xf4d03f,
+                transparent: true,
+                opacity: 0.3,
+                wireframe: true
+            });
+
+            // Create 4 boxes for each face
+            const frontBox = new THREE.Mesh(boxGeometry, boxMaterial);
+            frontBox.position.set(0, 0, 25);
+            boxGroup.add(frontBox);
+
+            const rightBox = new THREE.Mesh(boxGeometry, boxMaterial);
+            rightBox.position.set(25, 0, 0);
+            rightBox.rotation.y = Math.PI / 2;
+            boxGroup.add(rightBox);
+
+            const backBox = new THREE.Mesh(boxGeometry, boxMaterial);
+            backBox.position.set(0, 0, -25);
+            backBox.rotation.y = Math.PI;
+            boxGroup.add(backBox);
+
+            const leftBox = new THREE.Mesh(boxGeometry, boxMaterial);
+            leftBox.position.set(-25, 0, 0);
+            leftBox.rotation.y = -Math.PI / 2;
+            boxGroup.add(leftBox);
+
+            scene.add(boxGroup);
+        }
+
         camera.position.z = 50;
 
         function animate() {
             requestAnimationFrame(animate);
             particleSystem.rotation.x += 0.001;
             particleSystem.rotation.y += 0.002;
+            
+            // Rotate the box group if it exists
+            if (boxGroup) {
+                boxGroup.rotation.x += 0.005;
+                boxGroup.rotation.y += 0.01;
+            }
+            
             renderer.render(scene, camera);
         }
         animate();
