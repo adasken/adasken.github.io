@@ -949,6 +949,31 @@
                 font-size: 1.2rem;
             }
             
+            .flying-social::after {
+                content: attr(data-label);
+                position: absolute;
+                bottom: -35px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(244, 208, 63, 0.9);
+                color: #000;
+                padding: 0.4rem 0.8rem;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                white-space: nowrap;
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(244, 208, 63, 1);
+            }
+            
+            .flying-social.paused::after {
+                opacity: 1;
+                bottom: -40px;
+            }
+            
             .linkedin {
                 animation: flyLinkedInMobile 18s linear infinite, blink 2s ease-in-out infinite;
             }
@@ -1588,18 +1613,20 @@
             
             // Handle scroll events for social buttons
             window.addEventListener('scroll', function() {
-                // Pause animations when scrolling
+                // Pause animations and show labels when scrolling
                 document.querySelectorAll('.flying-social').forEach(button => {
                     button.style.animationPlayState = 'paused';
+                    button.classList.add('paused');
                 });
                 
                 // Clear existing timeout
                 clearTimeout(scrollTimeout);
                 
-                // Resume animations after scrolling stops (300ms delay)
+                // Resume animations and hide labels after scrolling stops (300ms delay)
                 scrollTimeout = setTimeout(() => {
                     document.querySelectorAll('.flying-social').forEach(button => {
                         button.style.animationPlayState = 'running';
+                        button.classList.remove('paused');
                     });
                 }, 300);
             });
