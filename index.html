@@ -89,7 +89,7 @@
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-radius: 0px;
+            border-radius: 15px;
             border: 2px solid rgba(255, 255, 255, 0.1);
             padding: 3rem;
             overflow-y: scroll;
@@ -820,7 +820,8 @@
                 padding: 2rem 1.5rem;
                 margin-bottom: 2rem;
                 border-radius: 15px;
-                border: 1px solid rgba(244, 208, 63, 0.2);
+                border: 2px solid rgba(244, 208, 63, 0.6);
+                box-shadow: 0 0 15px rgba(244, 208, 63, 0.4);
                 display: flex !important;
                 flex-direction: column;
                 justify-content: flex-start;
@@ -1129,6 +1130,97 @@
             .face:last-child {
                 margin-bottom: 3rem;
             }
+            
+            /* Fireworks effect */
+            .firework {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background: radial-gradient(circle, rgba(244, 208, 63, 1) 0%, transparent 50%);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 100;
+            }
+            
+            .firework::before,
+            .firework::after {
+                content: '';
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                top: 0;
+                left: 0;
+            }
+            
+            .firework::before {
+                background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, transparent 50%);
+                animation: fireworkParticle1 1.5s ease-out forwards;
+            }
+            
+            .firework::after {
+                background: radial-gradient(circle, rgba(244, 208, 63, 0.8) 0%, transparent 50%);
+                animation: fireworkParticle2 1.5s ease-out forwards;
+            }
+            
+            .firework.spark1 { animation: sparkDirection1 1.5s ease-out forwards; }
+            .firework.spark2 { animation: sparkDirection2 1.5s ease-out forwards; }
+            .firework.spark3 { animation: sparkDirection3 1.5s ease-out forwards; }
+            .firework.spark4 { animation: sparkDirection4 1.5s ease-out forwards; }
+            .firework.spark5 { animation: sparkDirection5 1.5s ease-out forwards; }
+            .firework.spark6 { animation: sparkDirection6 1.5s ease-out forwards; }
+            .firework.spark7 { animation: sparkDirection7 1.5s ease-out forwards; }
+            .firework.spark8 { animation: sparkDirection8 1.5s ease-out forwards; }
+            
+            @keyframes sparkDirection1 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(80px, -80px) scale(0); opacity: 0; }
+            }
+            
+            @keyframes sparkDirection2 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(100px, 0) scale(0); opacity: 0; }
+            }
+            
+            @keyframes sparkDirection3 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(80px, 80px) scale(0); opacity: 0; }
+            }
+            
+            @keyframes sparkDirection4 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(0, 100px) scale(0); opacity: 0; }
+            }
+            
+            @keyframes sparkDirection5 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(-80px, 80px) scale(0); opacity: 0; }
+            }
+            
+            @keyframes sparkDirection6 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(-100px, 0) scale(0); opacity: 0; }
+            }
+            
+            @keyframes sparkDirection7 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(-80px, -80px) scale(0); opacity: 0; }
+            }
+            
+            @keyframes sparkDirection8 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(0, -100px) scale(0); opacity: 0; }
+            }
+            
+            @keyframes fireworkParticle1 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(60px, -60px) scale(0); opacity: 0; }
+            }
+            
+            @keyframes fireworkParticle2 {
+                0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                100% { transform: translate(-60px, 60px) scale(0); opacity: 0; }
+            }
         }
     </style>
 </head>
@@ -1371,6 +1463,77 @@
 
         // Start shooting stars
         setTimeout(scheduleShooting, 2000); // First star after 2 seconds
+        
+        // Mobile fireworks effect
+        function createFireworks(x, y) {
+            const colors = [
+                'rgba(244, 208, 63, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(244, 208, 63, 0.8)',
+                'rgba(255, 255, 255, 0.6)'
+            ];
+            
+            // Create 8 sparks in different directions
+            for (let i = 1; i <= 8; i++) {
+                const spark = document.createElement('div');
+                spark.className = `firework spark${i}`;
+                spark.style.left = x + 'px';
+                spark.style.top = y + 'px';
+                spark.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]} 0%, transparent 50%)`;
+                
+                document.body.appendChild(spark);
+                
+                // Remove spark after animation
+                setTimeout(() => {
+                    if (spark.parentNode) {
+                        spark.parentNode.removeChild(spark);
+                    }
+                }, 1500);
+            }
+            
+            // Add more extra random particles for bigger effect
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.left = (x + (Math.random() - 0.5) * 40) + 'px';
+                particle.style.top = (y + (Math.random() - 0.5) * 40) + 'px';
+                particle.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]} 0%, transparent 50%)`;
+                particle.style.animation = `sparkDirection${Math.floor(Math.random() * 8) + 1} 1.8s ease-out forwards`;
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 1800);
+            }
+        }
+        
+        // Add click event listeners to mobile faces
+        if (window.innerWidth <= 414) {
+            document.querySelectorAll('.face').forEach(face => {
+                face.addEventListener('click', function(e) {
+                    // Get click position relative to viewport
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX;
+                    const y = e.clientY + window.scrollY;
+                    
+                    createFireworks(x, y);
+                });
+                
+                // Also add touch event for better mobile support
+                face.addEventListener('touchend', function(e) {
+                    if (e.changedTouches.length > 0) {
+                        const touch = e.changedTouches[0];
+                        const x = touch.clientX;
+                        const y = touch.clientY + window.scrollY;
+                        
+                        createFireworks(x, y);
+                    }
+                });
+            });
+        }
 
         // Cube rotation logic
         const cube = document.getElementById('cube');
