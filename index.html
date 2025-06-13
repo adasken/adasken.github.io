@@ -246,6 +246,85 @@
             }
         }
 
+        /* Lightning effects for desktop */
+        @media (min-width: 415px) {
+            .lightning {
+                position: fixed;
+                width: 2px;
+                height: 80px;
+                background: linear-gradient(to bottom, 
+                    rgba(244, 208, 63, 1) 0%,
+                    rgba(255, 255, 255, 0.9) 20%,
+                    rgba(244, 208, 63, 0.8) 40%,
+                    rgba(255, 255, 255, 0.7) 60%,
+                    rgba(244, 208, 63, 0.6) 80%,
+                    transparent 100%);
+                opacity: 0;
+                pointer-events: none;
+                z-index: 5;
+                box-shadow: 0 0 10px rgba(244, 208, 63, 0.8);
+                transform-origin: top center;
+            }
+            
+            .lightning::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -1px;
+                width: 4px;
+                height: 40px;
+                background: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 1) 0%,
+                    rgba(244, 208, 63, 0.9) 50%,
+                    transparent 100%);
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            }
+            
+            .lightning::after {
+                content: '';
+                position: absolute;
+                top: 30px;
+                left: -2px;
+                width: 6px;
+                height: 20px;
+                background: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 0.8) 0%,
+                    rgba(244, 208, 63, 0.7) 100%);
+                box-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
+            }
+            
+            @keyframes lightningStrike {
+                0% {
+                    opacity: 0;
+                    transform: scaleY(0) rotate(0deg);
+                }
+                10% {
+                    opacity: 1;
+                    transform: scaleY(1) rotate(5deg);
+                }
+                20% {
+                    opacity: 0.8;
+                    transform: scaleY(1.2) rotate(-3deg);
+                }
+                30% {
+                    opacity: 1;
+                    transform: scaleY(0.9) rotate(2deg);
+                }
+                40% {
+                    opacity: 0.6;
+                    transform: scaleY(1.1) rotate(-1deg);
+                }
+                50% {
+                    opacity: 0;
+                    transform: scaleY(0.5) rotate(0deg);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scaleY(0) rotate(0deg);
+                }
+            }
+        }
+
         /* Flying social buttons */
         .flying-social {
             position: fixed;
@@ -1577,6 +1656,49 @@
 
         // Start shooting stars
         setTimeout(scheduleShooting, 2000); // First star after 2 seconds
+        
+        // Lightning effects for desktop
+        function createLightning() {
+            if (window.innerWidth <= 414) return; // Only on desktop
+            
+            const lightning = document.createElement('div');
+            lightning.className = 'lightning';
+            
+            // Random position within the cube area
+            const cubeArea = document.querySelector('.cube-container');
+            const rect = cubeArea.getBoundingClientRect();
+            const x = rect.left + (Math.random() * rect.width * 0.6) + (rect.width * 0.2);
+            const y = rect.top + (Math.random() * rect.height * 0.3) + (rect.height * 0.1);
+            
+            lightning.style.left = x + 'px';
+            lightning.style.top = y + 'px';
+            lightning.style.animation = 'lightningStrike 0.8s ease-out forwards';
+            
+            // Random rotation for more natural look
+            lightning.style.transform += ` rotate(${(Math.random() - 0.5) * 30}deg)`;
+            
+            document.body.appendChild(lightning);
+            
+            // Remove lightning after animation
+            setTimeout(() => {
+                if (lightning.parentNode) {
+                    lightning.parentNode.removeChild(lightning);
+                }
+            }, 800);
+        }
+        
+        // Create lightning at random intervals
+        function scheduleLightning() {
+            if (window.innerWidth <= 414) return; // Only on desktop
+            
+            createLightning();
+            // Random interval between 3-8 seconds
+            const nextInterval = 3000 + Math.random() * 5000;
+            setTimeout(scheduleLightning, nextInterval);
+        }
+        
+        // Start lightning effects
+        setTimeout(scheduleLightning, 4000); // First lightning after 4 seconds
         
         // Mobile fireworks effect
         function createFireworks(x, y) {
