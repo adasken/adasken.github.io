@@ -47,10 +47,8 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 60vw;
-            height: 60vh;
-            max-width: 900px;
-            max-height: 580px;
+            width: min(60vw, 800px);
+            height: min(60vh, 600px);
             transform-style: preserve-3d;
             transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
             transition: none;
@@ -92,11 +90,7 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-radius: 15px;
-            border: 2px solid rgba(244, 208, 63, 0.4);
-            box-shadow: 
-                0 0 20px rgba(244, 208, 63, 0.3),
-                inset 0 0 30px rgba(244, 208, 63, 0.1),
-                0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             padding: 3rem;
             overflow-y: scroll;
             display: flex;
@@ -108,10 +102,7 @@
 
         .face:hover {
             border-color: #f4d03f;
-            box-shadow: 
-                0 0 30px rgba(244, 208, 63, 0.6),
-                inset 0 0 40px rgba(244, 208, 63, 0.2),
-                0 15px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
         }
 
         /* Custom scrollbar styles for all faces */
@@ -142,186 +133,88 @@
         }
 
         .face-front { 
-            transform: rotateY(0deg) translateZ(35vw); 
+            transform: rotateY(0deg) translateZ(min(35vw, 400px)); 
             animation: floatFront 12s ease-in-out infinite;
         }
         .face-right { 
-            transform: rotateY(90deg) translateZ(35vw); 
+            transform: rotateY(90deg) translateZ(min(35vw, 400px)); 
             animation: floatRight 14s ease-in-out infinite;
         }
         .face-back { 
-            transform: rotateY(180deg) translateZ(35vw); 
+            transform: rotateY(180deg) translateZ(min(35vw, 400px)); 
             animation: floatBack 16s ease-in-out infinite;
         }
         .face-left { 
-            transform: rotateY(-90deg) translateZ(35vw); 
+            transform: rotateY(-90deg) translateZ(min(35vw, 400px)); 
             animation: floatLeft 13s ease-in-out infinite;
-        }
-
-        @media (min-width: 1512px) {
-            .face-front { 
-                transform: rotateY(0deg) translateZ(450px); 
-                animation: floatFront 12s ease-in-out infinite;
-            }
-            .face-right { 
-                transform: rotateY(90deg) translateZ(450px); 
-                animation: floatRight 14s ease-in-out infinite;
-            }
-            .face-back { 
-                transform: rotateY(180deg) translateZ(450px); 
-                animation: floatBack 16s ease-in-out infinite;
-            }
-            .face-left { 
-                transform: rotateY(-90deg) translateZ(450px); 
-                animation: floatLeft 13s ease-in-out infinite;
-            }
         }
 
         @keyframes floatFront {
             0%, 100% {
-                transform: rotateY(0deg) translateZ(35vw) translateX(0px) translateY(0px);
+                transform: rotateY(0deg) translateZ(min(35vw, 450px)) translateX(0px) translateY(0px);
             }
             25% {
-                transform: rotateY(0deg) translateZ(35vw) translateX(15px) translateY(-10px);
+                transform: rotateY(0deg) translateZ(min(35vw, 450px)) translateX(15px) translateY(-10px);
             }
             50% {
-                transform: rotateY(0deg) translateZ(35vw) translateX(-8px) translateY(12px);
+                transform: rotateY(0deg) translateZ(min(35vw, 450px)) translateX(-8px) translateY(12px);
             }
             75% {
-                transform: rotateY(0deg) translateZ(35vw) translateX(10px) translateY(8px);
+                transform: rotateY(0deg) translateZ(min(35vw, 450px)) translateX(10px) translateY(8px);
             }
         }
 
         @keyframes floatRight {
             0%, 100% {
-                transform: rotateY(90deg) translateZ(35vw) translateX(0px) translateY(0px);
+                transform: rotateY(90deg) translateZ(min(35vw, 450px)) translateX(0px) translateY(0px);
             }
             15% {
-                transform: rotateY(90deg) translateZ(35vw) translateX(-5px) translateY(18px);
+                transform: rotateY(90deg) translateZ(min(35vw, 450px)) translateX(-5px) translateY(18px);
             }
             35% {
-                transform: rotateY(90deg) translateZ(35vw) translateX(12px) translateY(-8px);
+                transform: rotateY(90deg) translateZ(min(35vw, 450px)) translateX(12px) translateY(-8px);
             }
             55% {
-                transform: rotateY(90deg) translateZ(35vw) translateX(-15px) translateY(-20px);
+                transform: rotateY(90deg) translateZ(min(35vw, 450px)) translateX(-15px) translateY(-20px);
             }
             75% {
-                transform: rotateY(90deg) translateZ(35vw) translateX(8px) translateY(15px);
+                transform: rotateY(90deg) translateZ(min(35vw, 450px)) translateX(8px) translateY(15px);
             }
             90% {
-                transform: rotateY(90deg) translateZ(35vw) translateX(-3px) translateY(-5px);
+                transform: rotateY(90deg) translateZ(min(35vw, 450px)) translateX(-3px) translateY(-5px);
             }
         }
 
         @keyframes floatBack {
             0%, 100% {
-                transform: rotateY(180deg) translateZ(35vw) translateX(0px) translateY(0px);
+                transform: rotateY(180deg) translateZ(min(35vw, 450px)) translateX(0px) translateY(0px);
             }
             20% {
-                transform: rotateY(180deg) translateZ(35vw) translateX(22px) translateY(5px);
+                transform: rotateY(180deg) translateZ(min(35vw, 450px)) translateX(22px) translateY(5px);
             }
             40% {
-                transform: rotateY(180deg) translateZ(35vw) translateX(-10px) translateY(-25px);
+                transform: rotateY(180deg) translateZ(min(35vw, 450px)) translateX(-10px) translateY(-25px);
             }
             65% {
-                transform: rotateY(180deg) translateZ(35vw) translateX(18px) translateY(20px);
+                transform: rotateY(180deg) translateZ(min(35vw, 450px)) translateX(18px) translateY(20px);
             }
             85% {
-                transform: rotateY(180deg) translateZ(35vw) translateX(-20px) translateY(-10px);
+                transform: rotateY(180deg) translateZ(min(35vw, 450px)) translateX(-20px) translateY(-10px);
             }
         }
 
         @keyframes floatLeft {
             0%, 100% {
-                transform: rotateY(-90deg) translateZ(35vw) translateX(0px) translateY(0px);
+                transform: rotateY(-90deg) translateZ(min(35vw, 450px)) translateX(0px) translateY(0px);
             }
             30% {
-                transform: rotateY(-90deg) translateZ(35vw) translateX(-18px) translateY(-12px);
+                transform: rotateY(-90deg) translateZ(min(35vw, 450px)) translateX(-18px) translateY(-12px);
             }
             60% {
-                transform: rotateY(-90deg) translateZ(35vw) translateX(25px) translateY(8px);
+                transform: rotateY(-90deg) translateZ(min(35vw, 450px)) translateX(25px) translateY(8px);
             }
             80% {
-                transform: rotateY(-90deg) translateZ(35vw) translateX(-8px) translateY(22px);
-            }
-        }
-
-        /* Lightning effects for desktop */
-        @media (min-width: 415px) {
-            .lightning {
-                position: fixed;
-                width: 2px;
-                height: 80px;
-                background: linear-gradient(to bottom, 
-                    rgba(244, 208, 63, 1) 0%,
-                    rgba(255, 255, 255, 0.9) 20%,
-                    rgba(244, 208, 63, 0.8) 40%,
-                    rgba(255, 255, 255, 0.7) 60%,
-                    rgba(244, 208, 63, 0.6) 80%,
-                    transparent 100%);
-                opacity: 0;
-                pointer-events: none;
-                z-index: 5;
-                box-shadow: 0 0 10px rgba(244, 208, 63, 0.8);
-                transform-origin: top center;
-            }
-            
-            .lightning::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -1px;
-                width: 4px;
-                height: 40px;
-                background: linear-gradient(to bottom,
-                    rgba(255, 255, 255, 1) 0%,
-                    rgba(244, 208, 63, 0.9) 50%,
-                    transparent 100%);
-                box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-            }
-            
-            .lightning::after {
-                content: '';
-                position: absolute;
-                top: 30px;
-                left: -2px;
-                width: 6px;
-                height: 20px;
-                background: linear-gradient(to bottom,
-                    rgba(255, 255, 255, 0.8) 0%,
-                    rgba(244, 208, 63, 0.7) 100%);
-                box-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
-            }
-            
-            @keyframes lightningStrike {
-                0% {
-                    opacity: 0;
-                    transform: scaleY(0) rotate(0deg);
-                }
-                10% {
-                    opacity: 1;
-                    transform: scaleY(1) rotate(5deg);
-                }
-                20% {
-                    opacity: 0.8;
-                    transform: scaleY(1.2) rotate(-3deg);
-                }
-                30% {
-                    opacity: 1;
-                    transform: scaleY(0.9) rotate(2deg);
-                }
-                40% {
-                    opacity: 0.6;
-                    transform: scaleY(1.1) rotate(-1deg);
-                }
-                50% {
-                    opacity: 0;
-                    transform: scaleY(0.5) rotate(0deg);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scaleY(0) rotate(0deg);
-                }
+                transform: rotateY(-90deg) translateZ(min(35vw, 450px)) translateX(-8px) translateY(22px);
             }
         }
 
@@ -813,22 +706,6 @@
                 padding: 0.5rem 1rem;
             }
             
-            .controls {
-                top: 1rem;
-                padding: 0.8rem 1.5rem;
-            }
-            
-            .controls div:first-child {
-                font-size: 0.9rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .nav-section-btn {
-                padding: 0.3rem 0.5rem;
-                font-size: 0.75rem;
-                min-width: 60px;
-            }
-            
             /* Education Mobile Styles */
             .education-grid {
                 gap: 1.2rem !important;
@@ -915,7 +792,6 @@
             .controls {
                 display: none;
             }
-            
             /* Disable cube for mobile - make it a normal landing page */
             .cube-container {
                 position: static;
@@ -1043,31 +919,6 @@
                 width: 40px;
                 height: 40px;
                 font-size: 1.2rem;
-            }
-            
-            .flying-social::after {
-                content: attr(data-label);
-                position: absolute;
-                bottom: -35px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: rgba(244, 208, 63, 0.9);
-                color: #000;
-                padding: 0.4rem 0.8rem;
-                border-radius: 15px;
-                font-size: 0.8rem;
-                font-weight: 600;
-                white-space: nowrap;
-                opacity: 0;
-                pointer-events: none;
-                transition: all 0.3s ease;
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(244, 208, 63, 1);
-            }
-            
-            .flying-social.paused::after {
-                opacity: 1;
-                bottom: -40px;
             }
             
             .linkedin {
@@ -1566,56 +1417,12 @@
         const particleSystem = new THREE.Points(particles, particleMaterial);
         scene.add(particleSystem);
 
-        // Create 3D box geometry for desktop windows (only if not mobile)
-        let boxGroup;
-        if (window.innerWidth > 414) {
-            boxGroup = new THREE.Group();
-            
-            // Box geometry for each face
-            const boxGeometry = new THREE.BoxGeometry(25, 20, 2);
-            const boxMaterial = new THREE.MeshBasicMaterial({ 
-                color: 0xf4d03f,
-                transparent: true,
-                opacity: 0.3,
-                wireframe: true
-            });
-
-            // Create 4 boxes for each face
-            const frontBox = new THREE.Mesh(boxGeometry, boxMaterial);
-            frontBox.position.set(0, 0, 25);
-            boxGroup.add(frontBox);
-
-            const rightBox = new THREE.Mesh(boxGeometry, boxMaterial);
-            rightBox.position.set(25, 0, 0);
-            rightBox.rotation.y = Math.PI / 2;
-            boxGroup.add(rightBox);
-
-            const backBox = new THREE.Mesh(boxGeometry, boxMaterial);
-            backBox.position.set(0, 0, -25);
-            backBox.rotation.y = Math.PI;
-            boxGroup.add(backBox);
-
-            const leftBox = new THREE.Mesh(boxGeometry, boxMaterial);
-            leftBox.position.set(-25, 0, 0);
-            leftBox.rotation.y = -Math.PI / 2;
-            boxGroup.add(leftBox);
-
-            scene.add(boxGroup);
-        }
-
         camera.position.z = 50;
 
         function animate() {
             requestAnimationFrame(animate);
             particleSystem.rotation.x += 0.001;
             particleSystem.rotation.y += 0.002;
-            
-            // Rotate the box group if it exists
-            if (boxGroup) {
-                boxGroup.rotation.x += 0.005;
-                boxGroup.rotation.y += 0.01;
-            }
-            
             renderer.render(scene, camera);
         }
         animate();
@@ -1656,49 +1463,6 @@
 
         // Start shooting stars
         setTimeout(scheduleShooting, 2000); // First star after 2 seconds
-        
-        // Lightning effects for desktop
-        function createLightning() {
-            if (window.innerWidth <= 414) return; // Only on desktop
-            
-            const lightning = document.createElement('div');
-            lightning.className = 'lightning';
-            
-            // Random position within the cube area
-            const cubeArea = document.querySelector('.cube-container');
-            const rect = cubeArea.getBoundingClientRect();
-            const x = rect.left + (Math.random() * rect.width * 0.6) + (rect.width * 0.2);
-            const y = rect.top + (Math.random() * rect.height * 0.3) + (rect.height * 0.1);
-            
-            lightning.style.left = x + 'px';
-            lightning.style.top = y + 'px';
-            lightning.style.animation = 'lightningStrike 0.8s ease-out forwards';
-            
-            // Random rotation for more natural look
-            lightning.style.transform += ` rotate(${(Math.random() - 0.5) * 30}deg)`;
-            
-            document.body.appendChild(lightning);
-            
-            // Remove lightning after animation
-            setTimeout(() => {
-                if (lightning.parentNode) {
-                    lightning.parentNode.removeChild(lightning);
-                }
-            }, 800);
-        }
-        
-        // Create lightning at random intervals
-        function scheduleLightning() {
-            if (window.innerWidth <= 414) return; // Only on desktop
-            
-            createLightning();
-            // Random interval between 3-8 seconds
-            const nextInterval = 3000 + Math.random() * 5000;
-            setTimeout(scheduleLightning, nextInterval);
-        }
-        
-        // Start lightning effects
-        setTimeout(scheduleLightning, 4000); // First lightning after 4 seconds
         
         // Mobile fireworks effect
         function createFireworks(x, y) {
@@ -1748,28 +1512,6 @@
         
         // Add click event listeners to mobile faces
         if (window.innerWidth <= 414) {
-            let scrollTimeout;
-            
-            // Handle scroll events for social buttons
-            window.addEventListener('scroll', function() {
-                // Pause animations and show labels when scrolling
-                document.querySelectorAll('.flying-social').forEach(button => {
-                    button.style.animationPlayState = 'paused';
-                    button.classList.add('paused');
-                });
-                
-                // Clear existing timeout
-                clearTimeout(scrollTimeout);
-                
-                // Resume animations and hide labels after scrolling stops (300ms delay)
-                scrollTimeout = setTimeout(() => {
-                    document.querySelectorAll('.flying-social').forEach(button => {
-                        button.style.animationPlayState = 'running';
-                        button.classList.remove('paused');
-                    });
-                }, 300);
-            });
-            
             document.querySelectorAll('.face').forEach(face => {
                 face.addEventListener('click', function(e) {
                     // Get click position relative to viewport
