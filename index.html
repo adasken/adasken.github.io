@@ -921,83 +921,53 @@
             }
             
             .linkedin {
-                animation: flyLinkedInMobile 18s linear infinite, blink 2s ease-in-out infinite;
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-80px);
+                animation: staticFloat1 3s ease-in-out infinite, blink 2s ease-in-out infinite;
             }
 
             .github {
-                animation: flyGitHubMobile 22s linear infinite, blink 2.5s ease-in-out infinite;
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-20px);
+                animation: staticFloat2 3.5s ease-in-out infinite, blink 2.5s ease-in-out infinite;
             }
 
             .scholar {
-                animation: flyScholarMobile 20s linear infinite, blink 1.8s ease-in-out infinite;
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(40px);
+                animation: staticFloat3 2.8s ease-in-out infinite, blink 1.8s ease-in-out infinite;
             }
             
-            @keyframes flyLinkedInMobile {
-                0% {
-                    left: -50px;
-                    top: 15%;
-                }
-                25% {
-                    left: 20%;
-                    top: 70%;
+            @keyframes staticFloat1 {
+                0%, 100% {
+                    transform: translateX(-80px) translateY(0px);
                 }
                 50% {
-                    left: 70%;
-                    top: 25%;
-                }
-                75% {
-                    left: 45%;
-                    top: 60%;
-                }
-                100% {
-                    left: calc(100% + 50px);
-                    top: 35%;
+                    transform: translateX(-80px) translateY(-8px);
                 }
             }
-
-            @keyframes flyGitHubMobile {
-                0% {
-                    left: calc(100% + 50px);
-                    top: 75%;
+            
+            @keyframes staticFloat2 {
+                0%, 100% {
+                    transform: translateX(-20px) translateY(0px);
                 }
-                30% {
-                    left: 65%;
-                    top: 15%;
-                }
-                60% {
-                    left: 15%;
-                    top: 50%;
-                }
-                100% {
-                    left: -50px;
-                    top: 25%;
+                50% {
+                    transform: translateX(-20px) translateY(-10px);
                 }
             }
-
-            @keyframes flyScholarMobile {
-                0% {
-                    left: 40%;
-                    top: calc(100% + 50px);
+            
+            @keyframes staticFloat3 {
+                0%, 100% {
+                    transform: translateX(40px) translateY(0px);
                 }
-                20% {
-                    left: 75%;
-                    top: 45%;
-                }
-                40% {
-                    left: 25%;
-                    top: 15%;
-                }
-                60% {
-                    left: 65%;
-                    top: 70%;
-                }
-                80% {
-                    left: 15%;
-                    top: 35%;
-                }
-                100% {
-                    left: 50%;
-                    top: -50px;
+                50% {
+                    transform: translateX(40px) translateY(-6px);
                 }
             }
             
