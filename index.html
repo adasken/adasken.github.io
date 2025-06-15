@@ -412,13 +412,7 @@
             height: 1.2em;
             background: #f4d03f;
             margin-left: 2px;
-            animation: blink-cursor 1s infinite;
             vertical-align: text-bottom;
-        }
-
-        @keyframes blink-cursor {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
         }
 
         .contact-info {
@@ -1707,10 +1701,8 @@
             const typingElement = document.getElementById('typingText');
             const textToType = "Specializing in Big Data Analysis, Data-driven Strategies for Business, and Deep Learning for Real-world Applications";
             
-            // Delay the start of typing animation
-            setTimeout(() => {
-                typeWriter(typingElement, textToType, 40);
-            }, 1500);
+            // Start typing immediately
+            typeWriter(typingElement, textToType, 40);
         });
 
         // Prevent context menu on right click
