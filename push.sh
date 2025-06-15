@@ -5,7 +5,7 @@ git add .
 if [ -z "$1" ]; then
   git commit -m "bug fix"
 else
-  git commit -m "$1"
+  git commit -m "version $1"
 fi
 
 # Push the changes

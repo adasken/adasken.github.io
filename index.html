@@ -402,6 +402,23 @@
             opacity: 0.8;
             max-width: 600px;
             margin: 0 auto 3rem;
+            min-height: 2em;
+            position: relative;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #f4d03f;
+            margin-left: 2px;
+            animation: blink-cursor 1s infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink-cursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         .contact-info {
@@ -1213,8 +1230,8 @@
                 <div class="hero-content">
                     <h1 class="hero-title">Ken Quach</h1>
                     <p class="hero-subtitle">PhD Candidate in Computer Science</p>
-                    <p class="hero-description">
-                        Specializing in Big Data Analysis, Data-driven Strategies for Business, and Deep Learning for Real-world Applications
+                    <p class="hero-description" id="typingText">
+                        <span class="typing-cursor"></span>
                     </p>
                     <div class="contact-info">
                         <div class="contact-item">📍 Brisbane, AU</div>
@@ -1656,6 +1673,44 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Typing animation for hero description
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '<span class="typing-cursor"></span>';
+            
+            function type() {
+                if (i < text.length) {
+                    // Insert character before the cursor
+                    const cursor = element.querySelector('.typing-cursor');
+                    const textNode = document.createTextNode(text.charAt(i));
+                    element.insertBefore(textNode, cursor);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Remove cursor after typing is complete
+                    setTimeout(() => {
+                        const cursor = element.querySelector('.typing-cursor');
+                        if (cursor) {
+                            cursor.remove();
+                        }
+                    }, 2000);
+                }
+            }
+            
+            type();
+        }
+
+        // Start typing animation when page loads
+        window.addEventListener('load', () => {
+            const typingElement = document.getElementById('typingText');
+            const textToType = "Specializing in Big Data Analysis, Data-driven Strategies for Business, and Deep Learning for Real-world Applications";
+            
+            // Delay the start of typing animation
+            setTimeout(() => {
+                typeWriter(typingElement, textToType, 40);
+            }, 1500);
         });
 
         // Prevent context menu on right click
